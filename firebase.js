@@ -1,0 +1,42 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInAnonymously,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  update,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAOJL7Tb6iGJcTRO2ZhngJfeybB9N59I4c",
+  authDomain: "shuddho-games.firebaseapp.com",
+  databaseURL: "https://shuddho-games-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "shuddho-games",
+  storageBucket: "shuddho-games.firebasestorage.app",
+  messagingSenderId: "618350056137",
+  appId: "1:618350056137:web:def146b86d8c6994157318",
+  measurementId: "G-YV8K1TZ453"
+};
+
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+export const db = getDatabase(app);
+
+export {
+  signInAnonymously,
+  onAuthStateChanged,
+  ref,
+  set,
+  get,
+  update,
+  onValue
+};
