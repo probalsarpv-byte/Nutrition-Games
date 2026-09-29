@@ -1,52 +1,35 @@
-# NutriQuest 4P — Premium Final Package
+# Nutri Ludo — Full Rebuild
+
+পুরোনো dashboard-style UI বাদ দিয়ে mobile Ludo app feel-এ নতুন front-end বানানো হয়েছে।
 
 ## Included
-- Solo vs AI
+- Solo vs Computer
 - Local 2–4 Player
-- Online 2–4 Player via Firebase Realtime Database
-- Create Room / Join Room / Ready / Host Start / Live Turn Sync
-- Dynamic room capacity: 2, 3 or 4
-- 5 learning levels
-- Easy / Medium / Hard
-- Bilingual Bangla + English
+- Online 2–4 Player with Firebase room code
+- Create / Join / Ready / Start / Live turn sync
+- 5 Levels, Easy / Medium / Hard
+- বাংলা + English
 - Day / Night mode
-- 3D-style animated dice
-- 3D board perspective
-- Animated Nutri Panda mascot
-- 4 Panda player avatars / color-coded tokens
-- Nutrition quizzes
-- Snake / Ladder / Quiz / Bonus / Trap / Duel tiles
-- Power-ups: Shield, Hint, Boost, Freeze slots
-- Score, streak, accuracy and achievements
-- Daily Challenge entry
-- Responsive mobile layout
-- Blogger iframe file
+- 4 Panda themes
+- CSS 3D dice
+- SVG snakes and ladders drawn across the board
+- Animated tokens and Panda cards
+- Quiz / Bonus / Trap / Duel tiles
+- Working Hint, Shield, Boost and Freeze mechanics
+- Web Audio sound effects
+- Winner confetti
+- Achievements via localStorage
+- Daily Challenge
+- Responsive mobile-first UI
 
-## Upload to GitHub
-Extract ZIP. Upload every file to repository root:
-index.html
-style.css
-firebase.js
-levels.js
-questions.js
-game.js
-app.js
-firebase-rules.json
-blogger-embed.html
+## Upload
+ZIP extract করে সব file GitHub repository root-এ replace/upload করুন।
 
-Then GitHub → Settings → Pages → Deploy from branch → main → /(root)
+তারপর GitHub → Settings → Pages → main → /(root)
 
 ## Firebase Rules
-Firebase Console → Realtime Database → Rules
-Copy all text from `firebase-rules.json` → Paste → Publish.
-
-## Test 4-player online
-1. Device 1: Create Room → capacity 4.
-2. Device 2/3/4: Join with same 6-digit room code.
-3. Everyone presses Ready.
-4. Host selects Level + Difficulty.
-5. Host presses Start Game.
-6. Turns rotate Player 1 → 2 → 3 → 4.
+`firebase-rules.json`-এর content Firebase → Realtime Database → Rules-এ paste করে Publish করুন।
+Anonymous Authentication ON রাখুন।
 
 ## Important
-This is a Firebase-only casual educational multiplayer architecture. It is not fully anti-cheat because clients still execute game logic. For ranked/public competitive play, move dice generation and move validation to an authoritative Node.js/Cloud Functions backend.
+Firebase-only multiplayer casual educational game-এর জন্য ঠিক আছে। Ranked/public anti-cheat চাইলে dice এবং move validation authoritative Node.js backend-এ নিতে হবে।
