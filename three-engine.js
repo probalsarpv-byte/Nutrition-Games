@@ -128,11 +128,24 @@ export class ThreeBoard{
     this.selectable=list||[];
     for(const [key,g] of this.tokens){const [uid,idx]=key.split(":");const active=this.selectable.some(s=>s.uid===uid&&String(s.idx)===idx);const base=this.mode==="classic"?.76:1;g.scale.setScalar(active?base*1.18:base);g.traverse(o=>{if(o.material?.emissive)o.material.emissive.setHex(active?0x334400:0x000000)})}
   }
-  async animateTokenTo(game,uid,idx=0){
+  getTokenPosition(uid,idx=0){
+    const g=this.tokens.get(this.tokenKey(uid,idx));
+    return g?g.position.clone():null;
+  }
+  async animateTokenFrom(uid,idx=0,startPos=null){
     const g=this.tokens.get(this.tokenKey(uid,idx));if(!g)return;
-    const end=g.position.clone();const start=end.clone();start.y+=.65;g.position.copy(start);
-    const st=performance.now(),dur=380;
-    return new Promise(res=>{const tick=(now)=>{const t=Math.min(1,(now-st)/dur),e=1-Math.pow(1-t,3);g.position.lerpVectors(start,end,e);g.position.y=end.y+Math.sin(t*Math.PI)*.5;if(t<1)requestAnimationFrame(tick);else{g.position.copy(end);res()}};requestAnimationFrame(tick)})
+    const end=g.position.clone();
+    const start=startPos?startPos.clone():end.clone().add(new THREE.Vector3(0,.65,0));
+    const st=performance.now(),dur=560;
+    return new Promise(res=>{
+      const tick=(now)=>{
+        const t=Math.min(1,(now-st)/dur),e=1-Math.pow(1-t,3);
+        g.position.lerpVectors(start,end,e);
+        g.position.y=(start.y+(end.y-start.y)*e)+Math.sin(t*Math.PI)*.55;
+        if(t<1)requestAnimationFrame(tick);else{g.position.copy(end);res()}
+      };
+      requestAnimationFrame(tick);
+    });
   }
   async rollDice(v){
     const d=this.dice;if(!d)return;const st=performance.now(),dur=900;
