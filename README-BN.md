@@ -1,39 +1,65 @@
-# Nutri Ludo — Classic Mechanics Rebuild
+# Nutri Ludo World — Three.js Final Package
 
-এই build-এ সবচেয়ে বড় পরিবর্তন: গুটি আর auto-move করবে না।
+এই build-এ একই app-এর মধ্যে ২টি game mode আছে:
 
-## New classic Ludo behavior
-- সব গুটি শুরুতে board-এর বাইরে HOME/YARD-এ থাকবে।
-- 1 বা 6 roll না করলে গুটি board-এ ঢুকবে না।
-- 1 বা 6 roll হলে user নিজের গুটিতে tap/click করলে গুটি tile 1-এ ঢুকবে।
-- গুটি board-এ ঢোকার পর dice roll-এর result অনুযায়ী user গুটিতে tap করলে move করবে।
-- move করার আগে token pulse/highlight করবে।
-- Human move শেষ হলেই Computer নিজে dice roll করবে।
-- Computer-এর dice resultও বড় করে board-এর পাশে দেখাবে।
-- Dice click করলে dice board-এর ওপর দিয়ে উড়ে/ঘুরে গিয়ে result দেখাবে।
-- Mobile-এ token size বড় করা হয়েছে।
+1. Snake Nutrition
+2. Classic Nutrition Ludo
 
-## Nutrition board
-Board-এর বিভিন্ন ঘরে:
-- Healthy foods: 🥚🥦🍎🐟🥛🥗🥜🍊 → সামনে এগিয়ে দেয়।
-- Junk foods: 🥤🍟🍩🍬🍔🧁🍕 → পিছিয়ে দেয়।
-- ❓ Quiz tiles → nutrition question.
-- Food tile থেকে destination পর্যন্ত dotted visual path দেখানো হয়।
+## Three.js features
+- Real WebGL scene
+- Directional + hemisphere lighting
+- Shadows
+- 3D board tiles
+- 3D animated dice
+- Procedural low-poly Panda tokens
+- Token raycasting/tap selection
+- Animated selectable-token glow/scale
+- 3D food-themed raised cells
+- Responsive mobile canvas
 
-## Existing features retained
-- Solo vs Computer
-- Local 2–4 players
-- Online 2–4 players via Firebase
-- 5 levels
-- Easy / Medium / Hard
-- Bangla / English
+## Snake Nutrition
+- 1–100 3D board
+- Token starts outside board
+- 1 or 6 needed to enter
+- User taps Panda after dice roll
+- Healthy food = forward bonus
+- Junk food = backward penalty
+- Quiz tiles
+- Solo / Local / Online
+
+## Classic Nutrition Ludo
+- 15×15 Ludo board
+- 4 Panda tokens per player
+- 2–4 players
+- 1 or 6 enters a token
+- Manual token selection
+- 52-cell outer path
+- Colored home lanes
+- Basic capture/cut rule
+- Safe cells
+- Food / Quiz cells
+- Solo / Local / Online
+
+## UI
+- Mobile app layout
 - Day / Night
-- Hint / Boost / Freeze
-- Score / quiz accuracy
-- Achievements
-- Sound + winner confetti
+- Bangla / English
+- Sound
+- Results, accuracy, score, achievements
+- Daily challenge
 
-## Upload
-পুরোনো repository root-এর game files replace করে ZIP-এর সব file upload করুন।
+## Deploy
+Upload all files to the root of:
+probalsarpv-byte/Nutrition-Games
 
-Firebase Realtime Database Rules-এর জন্য `firebase-rules.json` ব্যবহার করুন।
+Then:
+GitHub → Settings → Pages → main → /(root)
+
+## Firebase
+Realtime Database → Rules
+Paste `firebase-rules.json` and Publish.
+
+Anonymous Auth must remain enabled.
+
+## Note
+The Panda characters and food tiles are procedural Three.js models/sprites so the app stays lightweight and works on GitHub Pages/Blogger without large asset files. You can later replace them with GLB/GLTF artwork without changing the game logic.
