@@ -1,0 +1,4 @@
+import {auth,db,ref,get,set,onDisconnect,runTransaction,signInAnonymously} from './firebase.js';
+export async function ensureAuth(){if(!auth.currentUser)await signInAnonymously(auth);return auth.currentUser;}
+export async function createRoom({name,gameConfig}){const u=await ensureAuth();let code;for(let i=0;i<8;i++){code=String(Math.floor(100000+Math.random()*900000));if(!(await get(ref(db,`rooms/${code}`))).exists())break;}await set(ref(db,`rooms/${code}`),{status:'waiting',hostUid:u.uid,gameConfig,players:{[u.uid]:{name,ready:false,connected:true}}});const p=ref(db,`rooms/${code}/players/${u.uid}/connected`);await set(p,true);onDisconnect(p).set(false);return code;}
+export async function transactGame(code,expectedSeq,mutator){return runTransaction(ref(db,`rooms/${code}/game`),g=>{if(!g||g.actionSeq!==expectedSeq)return;const next=mutator(g);if(next)next.actionSeq++;return next;});}

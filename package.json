@@ -1,0 +1,1 @@
+{"type":"module","scripts":{"test":"node tests/engine-tests.mjs"}}

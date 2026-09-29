@@ -1,0 +1,5 @@
+import {newClassicPlayer} from '../classic/classic-rules.js';
+import {newSnakePlayer} from '../snake/snake-rules.js';
+export const COLORS=['green','purple','orange','blue'];
+export function seating(count){if(count===2)return [0,2];if(count===3)return [0,1,2];return [0,1,2,3];}
+export function createGame({mode,playType,count=2,difficulty='medium',names=[]}){const slots=seating(count),players={},order=[];slots.forEach((slot,i)=>{const id=`p${i+1}`,color=COLORS[slot],name=names[i]||`Player ${i+1}`,isAI=playType==='solo'&&i===1;players[id]=mode==='classic'?newClassicPlayer(id,isAI?'NutriBot':name,slot+1,color,isAI):newSnakePlayer(id,isAI?'NutriBot':name,slot+1,color,isAI);order.push(id);});return{version:1,mode,playType,status:'playing',difficulty,players,order,turnIndex:0,currentTurn:order[0],phase:'ROLL',dice:null,streak:{trigger:mode==='classic'?6:1,count:0,snapshot:null},bonus:{pending:false,reasons:[]},actionSeq:1,lastEvent:'Roll the dice',winner:null,usedQuestions:[],pendingQuiz:null};}

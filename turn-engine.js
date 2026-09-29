@@ -1,0 +1,7 @@
+import {makeSnapshot,restoreGame} from './rollback-engine.js';
+import {CLASSIC_CONFIG} from '../classic/classic-map.js';
+import {SNAKE_CONFIG} from '../snake/snake-map.js';
+export function triggerNumber(game){return game.mode==='classic'?CLASSIC_CONFIG.openingNumber:SNAKE_CONFIG.openingNumber;}
+export function beginRoll(game,dice){if(game.phase!=='ROLL')throw new Error('Not in roll phase');const trigger=triggerNumber(game);if(dice===trigger){if(game.streak.count===0)game.streak.snapshot=makeSnapshot(game);game.streak.count++;if(game.streak.count===3){const snap=game.streak.snapshot;restoreGame(game,snap);game.streak={trigger,count:0,snapshot:null};game.phase='ROLL';game.dice=null;game.lastEvent=`Triple ${trigger} cancelled. Fresh roll.`;game.actionSeq++;return{tripleCancel:true};}}else{game.streak={trigger,count:0,snapshot:null};}game.dice=dice;game.actionSeq++;return{tripleCancel:false};}
+export function finishAction(game,{bonusReasons=[]}={}){const reasons=[...new Set(bonusReasons)];if(reasons.length){game.phase='ROLL';game.dice=null;game.bonus={pending:false,reasons:[]};game.lastEvent=`Bonus roll: ${reasons.join(', ')}`;return;}nextPlayer(game);}
+export function nextPlayer(game){game.turnIndex=(game.turnIndex+1)%game.order.length;game.currentTurn=game.order[game.turnIndex];game.phase='ROLL';game.dice=null;game.streak={trigger:triggerNumber(game),count:0,snapshot:null};game.lastEvent='Roll the dice';}

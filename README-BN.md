@@ -1,65 +1,47 @@
-# Nutri Ludo World — Figma-guided Three.js Free Build
+# Nutri Ludo World — RC1
 
-এই package-টি paid API ছাড়া তৈরি।
+এটি **Production নয়**, এটি Release Candidate 1। Final DEV SPEC অনুযায়ী core engine নতুন করে ভাগ করা হয়েছে।
 
-## Included
-- Snake Nutrition mode
-- Classic Nutrition Ludo mode
-- Three.js 3D board
-- Procedural 3D Panda tokens
-- 3D animated dice
-- Real snake + ladder geometry
-- Food tiles
-- Quiz tiles
-- Manual token tap selection
-- Solo vs Computer
-- Local 2–4 player
-- Online 2–4 player via Firebase
-- Day/Night
-- Bangla/English
-- Sound
-- Achievements
-- Daily challenge
-- Mobile-first UI based on the Figma design direction
-
-## Snake mode
-- Token starts outside board
-- 1 or 6 needed to enter
-- Snake / ladder effects
-- Healthy food moves forward
-- Junk food moves backward
-- Quiz tiles
-
-## Classic mode
-- 4 tokens/player
-- 1 or 6 enters token
-- Manual token selection
+## RC1-এ implemented
+- Classic এবং Snake আলাদা rule engine
+- Classic 2-player opposite seating (Green ↔ Orange)
+- Classic opening = 6
+- Snake opening = 1
+- Classic 4 tokens/player
+- 52-cell common track
+- 6-cell home lane + center finish
+- Home gate/home lane nutrition visual theme
 - Safe cells
-- Capture/cut
-- Home lane
-- Center finish
-- Food + quiz cells
+- Capture
+- Blockade validation
+- Exact finish
+- Bonus roll
+- Triple-6 full rollback
+- Triple-1 full rollback
+- এক roll → এক movement action; roll যোগ করে movement নয়
+- Mobile full-screen game screen
+- Back/Quit confirmation
+- 15 sec auto-roll timer
+- 10 sec auto-select timer
+- বড় visible dice result
+- 4 distinct Panda variants
+- Snake + ladder geometry
+- watermark numbering
+- nutrition / quiz / power tiles
+- Firebase transaction helper
+- Node engine regression tests
 
-## Free stack
-- GitHub Pages
-- Firebase Anonymous Auth
-- Firebase Realtime Database
-- Three.js CDN
-- No OpenAI API
-- No paid API
+## Production-এর আগে বাকি
+- Full online lobby/reconnect/host-transfer UI wiring
+- Firebase rules hardening
+- পূর্ণ বাংলা/English translation
+- 50+ question bank
+- actual Android/iPhone browser QA
+- browser runtime regression test
+- visual asset polish
+
+## Local Test
+`npm test`
 
 ## Deploy
-Upload all files to the root of:
-probalsarpv-byte/Nutrition-Games
-
-Then GitHub Pages:
-Settings → Pages → main → /(root)
-
-## Firebase
-Anonymous Authentication must be enabled.
-
-Realtime Database → Rules:
-Paste `firebase-rules.json` and Publish.
-
-## Blogger
-Use `blogger-embed.html`.
+পুরো folder structure GitHub Pages repository root-এ upload করতে হবে। শুধু root JS files upload করলে module imports ভেঙে যাবে।
