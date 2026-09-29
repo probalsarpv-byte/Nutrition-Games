@@ -1,19 +1,207 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn" data-theme="day">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Nutrition Ludo - Firebase Test</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <title>NutriQuest 4P — Premium Nutrition Ludo</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <main class="card">
-    <h1>Nutrition Ludo</h1>
-    <p id="status">Connecting to Firebase...</p>
-    <pre id="errorBox" hidden></pre>
-    <p class="small">GitHub Pages ↔ Firebase connection test</p>
+<div id="app">
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="logo3d">🐼</div>
+      <div><h1>NutriQuest 4P</h1><p id="tagline">Play • Learn • Compete</p></div>
+    </div>
+    <div class="top-actions">
+      <button id="themeBtn" class="icon-btn" title="Day/Night">🌙</button>
+      <button id="langBtn" class="icon-btn" title="Language">EN</button>
+      <button id="soundBtn" class="icon-btn" title="Sound">🔊</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero premium-shell">
+        <div class="hero-copy">
+          <span class="eyebrow">Premium Nutrition Board Game</span>
+          <h2 id="heroTitle">পান্ডাদের সাথে খেলতে খেলতে নিউট্রিশন শিখুন</h2>
+          <p id="heroText">১–৪ জন, Online Room, Local Multiplayer, Solo AI, ৫ Level, ৩ Difficulty, Quiz Battle, Power-ups এবং 3D-style board animation.</p>
+          <div class="mode-grid">
+            <button class="mode-card" data-mode="solo"><span class="mode-ico">🤖</span><b>Solo vs AI</b><small id="soloSub">কম্পিউটারের বিরুদ্ধে</small></button>
+            <button class="mode-card" data-mode="local"><span class="mode-ico">👥</span><b>Local 2–4P</b><small id="localSub">এক ডিভাইসে বন্ধুদের সাথে</small></button>
+            <button class="mode-card featured" data-mode="online"><span class="mode-ico">🌐</span><b>Online 2–4P</b><small id="onlineSub">Room code দিয়ে লাইভ</small></button>
+            <button class="mode-card" data-mode="challenge"><span class="mode-ico">🎯</span><b>Challenge</b><small id="challengeSub">Daily mission & streak</small></button>
+          </div>
+          <div class="feature-pills">
+            <span>🐼 4 Panda Avatars</span><span>⚡ Power-ups</span><span>🏆 Achievements</span><span>🌙 Day/Night</span><span>বাংলা + EN</span>
+          </div>
+        </div>
+        <div class="mascot-stage">
+          <div class="orbit o1"></div><div class="orbit o2"></div>
+          <div class="mascot-main" id="heroPanda">🐼</div>
+          <div class="speech" id="pandaSpeech">আজকে Nutrition Master হবো?</div>
+          <div class="mini-pandas">
+            <span title="Mint Panda">🐼</span><span title="Berry Panda">🐼</span><span title="Sun Panda">🐼</span><span title="Night Panda">🐼</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="setup" class="screen">
+      <div class="panel premium-shell narrow">
+        <button class="back-btn" data-go="home">← Back</button>
+        <h2 id="setupTitle">Game Setup</h2>
+
+        <div id="capacityWrap" class="setup-block">
+          <h3 id="capacityLabel">Players</h3>
+          <div class="segmented" id="capacityPicker">
+            <button data-cap="2">2</button><button data-cap="3">3</button><button data-cap="4" class="selected">4</button>
+          </div>
+        </div>
+
+        <div id="nameInputs" class="player-inputs"></div>
+
+        <div class="setup-block">
+          <h3 id="levelLabel">Level</h3>
+          <div id="levelPicker" class="level-picker"></div>
+        </div>
+
+        <div class="setup-block">
+          <h3>Difficulty</h3>
+          <div class="segmented" id="difficultyPicker">
+            <button data-diff="easy">Easy</button>
+            <button data-diff="medium" class="selected">Medium</button>
+            <button data-diff="hard">Hard</button>
+          </div>
+        </div>
+
+        <button id="startSetupBtn" class="primary-btn wide">Start Game</button>
+      </div>
+    </section>
+
+    <section id="online" class="screen">
+      <div class="panel premium-shell narrow">
+        <button class="back-btn" data-go="home">← Back</button>
+        <div class="online-head">
+          <div><h2>Online Multiplayer</h2><p id="firebaseStatus" class="status">Firebase connecting…</p></div>
+          <div class="live-dot"></div>
+        </div>
+
+        <label class="field"><span id="yourNameLabel">আপনার নাম</span><input id="onlineName" maxlength="18" placeholder="Your name"></label>
+
+        <div class="setup-block">
+          <h3 id="onlineCapacityLabel">Room capacity</h3>
+          <div class="segmented" id="onlineCapacity">
+            <button data-online-cap="2">2</button><button data-online-cap="3">3</button><button data-online-cap="4" class="selected">4</button>
+          </div>
+        </div>
+
+        <div class="online-grid">
+          <button id="createRoomBtn" class="primary-btn">Create Room</button>
+          <div class="join-row"><input id="roomCodeInput" maxlength="6" inputmode="numeric" placeholder="6-digit room code"><button id="joinRoomBtn" class="secondary-btn">Join</button></div>
+        </div>
+        <p id="onlineError" class="error" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="lobby" class="screen">
+      <div class="panel premium-shell">
+        <div class="lobby-top">
+          <div><small>ROOM CODE</small><strong id="roomCodeDisplay">------</strong></div>
+          <button id="leaveLobbyBtn" class="secondary-btn">Leave</button>
+        </div>
+
+        <div id="lobbyPlayers" class="lobby-grid"></div>
+
+        <div class="setup-block compact">
+          <div class="inline-selects">
+            <label>Level <select id="lobbyLevel"></select></label>
+            <label>Difficulty <select id="lobbyDifficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></label>
+          </div>
+        </div>
+
+        <div class="lobby-actions">
+          <button id="readyBtn" class="secondary-btn">I'm Ready</button>
+          <button id="startOnlineBtn" class="primary-btn" disabled>Start Game</button>
+        </div>
+        <p id="lobbyNote" class="muted">Joined players সবাই Ready হলে Host শুরু করতে পারবে।</p>
+      </div>
+    </section>
+
+    <section id="game" class="screen">
+      <div class="game-shell">
+        <aside class="hud premium-shell">
+          <div class="turn-box">
+            <small>TURN</small>
+            <strong id="turnName">Player</strong>
+            <span id="phaseText">Roll the dice</span>
+          </div>
+
+          <div id="playerCards" class="player-cards"></div>
+
+          <div class="dice-zone">
+            <div class="dice-scene">
+              <div id="diceCube" class="dice-cube">
+                <div class="face f1">⚀</div><div class="face f2">⚁</div><div class="face f3">⚂</div>
+                <div class="face f4">⚃</div><div class="face f5">⚄</div><div class="face f6">⚅</div>
+              </div>
+            </div>
+            <button id="rollBtn" class="primary-btn wide">ROLL DICE</button>
+          </div>
+
+          <div class="power-panel">
+            <h3>Power-ups</h3>
+            <div id="powerups"></div>
+          </div>
+        </aside>
+
+        <section class="board-panel premium-shell">
+          <div class="board-head">
+            <div><span id="levelBadge" class="eyebrow">Level 1</span><h2 id="levelTitle">Food Explorer</h2></div>
+            <div class="legend"><span>🪜 Ladder</span><span>🐍 Snake</span><span>❓ Quiz</span><span>⚡ Bonus</span><span>🍭 Trap</span><span>⚔️ Duel</span></div>
+          </div>
+
+          <div class="board-3d-wrap">
+            <div id="board" class="board"></div>
+          </div>
+
+          <div class="log-row">
+            <div id="eventLog" class="event-log">Game ready.</div>
+            <div id="streakBadge" class="streak-badge">🔥 0</div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="panel premium-shell result">
+        <div class="confetti">✨ 🏆 ✨</div>
+        <h2 id="resultTitle">Winner</h2>
+        <p id="resultSub"></p>
+        <div id="resultStats" class="result-grid"></div>
+        <div class="achievement-row" id="achievementRow"></div>
+        <div class="result-actions">
+          <button id="homeBtn" class="secondary-btn">Home</button>
+          <button id="rematchBtn" class="primary-btn">Rematch</button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script type="module" src="./app.js"></script>
+  <div id="quizModal" class="modal hidden">
+    <div class="quiz-card premium-shell">
+      <div class="quiz-meta"><span id="quizCategory">Quiz</span><span id="quizTimer">20</span></div>
+      <h3 id="quizQuestion"></h3>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div id="quizFeedback" class="feedback"></div>
+      <button id="quizContinue" class="primary-btn wide hidden">Continue</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+</div>
+<script type="module" src="./app.js"></script>
 </body>
 </html>
