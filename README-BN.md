@@ -1,65 +1,65 @@
-# Nutri Ludo World — Three.js Final Package
+# Nutri Ludo World — Figma-guided Three.js Free Build
 
-এই build-এ একই app-এর মধ্যে ২টি game mode আছে:
+এই package-টি paid API ছাড়া তৈরি।
 
-1. Snake Nutrition
-2. Classic Nutrition Ludo
-
-## Three.js features
-- Real WebGL scene
-- Directional + hemisphere lighting
-- Shadows
-- 3D board tiles
+## Included
+- Snake Nutrition mode
+- Classic Nutrition Ludo mode
+- Three.js 3D board
+- Procedural 3D Panda tokens
 - 3D animated dice
-- Procedural low-poly Panda tokens
-- Token raycasting/tap selection
-- Animated selectable-token glow/scale
-- 3D food-themed raised cells
-- Responsive mobile canvas
+- Real snake + ladder geometry
+- Food tiles
+- Quiz tiles
+- Manual token tap selection
+- Solo vs Computer
+- Local 2–4 player
+- Online 2–4 player via Firebase
+- Day/Night
+- Bangla/English
+- Sound
+- Achievements
+- Daily challenge
+- Mobile-first UI based on the Figma design direction
 
-## Snake Nutrition
-- 1–100 3D board
+## Snake mode
 - Token starts outside board
 - 1 or 6 needed to enter
-- User taps Panda after dice roll
-- Healthy food = forward bonus
-- Junk food = backward penalty
+- Snake / ladder effects
+- Healthy food moves forward
+- Junk food moves backward
 - Quiz tiles
-- Solo / Local / Online
 
-## Classic Nutrition Ludo
-- 15×15 Ludo board
-- 4 Panda tokens per player
-- 2–4 players
-- 1 or 6 enters a token
+## Classic mode
+- 4 tokens/player
+- 1 or 6 enters token
 - Manual token selection
-- 52-cell outer path
-- Colored home lanes
-- Basic capture/cut rule
 - Safe cells
-- Food / Quiz cells
-- Solo / Local / Online
+- Capture/cut
+- Home lane
+- Center finish
+- Food + quiz cells
 
-## UI
-- Mobile app layout
-- Day / Night
-- Bangla / English
-- Sound
-- Results, accuracy, score, achievements
-- Daily challenge
+## Free stack
+- GitHub Pages
+- Firebase Anonymous Auth
+- Firebase Realtime Database
+- Three.js CDN
+- No OpenAI API
+- No paid API
 
 ## Deploy
 Upload all files to the root of:
 probalsarpv-byte/Nutrition-Games
 
-Then:
-GitHub → Settings → Pages → main → /(root)
+Then GitHub Pages:
+Settings → Pages → main → /(root)
 
 ## Firebase
-Realtime Database → Rules
+Anonymous Authentication must be enabled.
+
+Realtime Database → Rules:
 Paste `firebase-rules.json` and Publish.
 
-Anonymous Auth must remain enabled.
-
-## Note
-The Panda characters and food tiles are procedural Three.js models/sprites so the app stays lightweight and works on GitHub Pages/Blogger without large asset files. You can later replace them with GLB/GLTF artwork without changing the game logic.
+## Blogger
+Use `blogger-embed.html`.

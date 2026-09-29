@@ -1,65 +1,82 @@
 <!doctype html>
-<html lang="bn" data-theme="day">
+<html lang="bn" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0e8f79">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0B7F6C" />
   <title>Nutri Ludo World</title>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 <div id="app">
   <header class="topbar">
     <div class="brand">
-      <div class="brand-orb">🐼</div>
-      <div><h1>Nutri Ludo World</h1><small>3D Nutrition Board Game</small></div>
+      <div class="brand-icon">🐼</div>
+      <div>
+        <h1>Nutri Ludo World</h1>
+        <small>3D Nutrition Board Game</small>
+      </div>
     </div>
     <div class="top-actions">
-      <button id="themeBtn" class="icon-btn" title="Theme">🌙</button>
-      <button id="langBtn" class="icon-btn" title="Language">EN</button>
-      <button id="soundBtn" class="icon-btn" title="Sound">🔊</button>
+      <button id="themeBtn" class="icon-btn" aria-label="Theme">🌙</button>
+      <button id="langBtn" class="icon-btn" aria-label="Language">EN</button>
+      <button id="soundBtn" class="icon-btn" aria-label="Sound">🔊</button>
     </div>
   </header>
 
   <main>
-    <section id="homeScreen" class="screen active">
-      <div class="home">
-        <div class="hero">
-          <span class="pill">THREE.JS • 2 GAME MODES • 2–4 PLAYERS</span>
-          <h2 id="heroTitle">এক অ্যাপে Snake Nutrition + Classic Nutrition Ludo</h2>
-          <p id="heroText">3D board, animated dice, Panda tokens, food events, quiz, power-ups, Solo, Local ও Online multiplayer.</p>
+    <!-- HOME -->
+    <section id="screen-home" class="screen active">
+      <div class="home-wrap">
+        <span class="eyebrow">THREE.JS • FREE • MOBILE-FIRST</span>
+        <h2 id="homeTitle">Play. Learn. Win.</h2>
+        <p id="homeSub">Snake Nutrition আর Classic Nutrition Ludo — একই অ্যাপে।</p>
+
+        <div class="hero-card">
+          <div class="hero-panda">🐼</div>
+          <div>
+            <b>Nutri Panda</b>
+            <small>Daily streak 7 🔥</small>
+            <span class="level-chip">LEVEL 12</span>
+          </div>
         </div>
 
-        <div class="mode-showcase">
-          <button class="world-card snake-world" data-game-mode="snake">
-            <div class="world-visual">🐍 🥦 🍔 🎲</div>
-            <div><b>Snake Nutrition</b><small>1–100 board • healthy & junk food events</small></div>
+        <div class="mode-grid">
+          <button class="mode-card active" data-game="snake">
+            <span class="mode-art">🐍🥦🎲</span>
+            <b>Snake Nutrition</b>
+            <small>1–100 board • snake • ladder • food</small>
           </button>
-          <button class="world-card classic-world" data-game-mode="classic">
-            <div class="world-visual">🏠 🐼 🏁 🎲</div>
-            <div><b>Classic Nutrition Ludo</b><small>4 tokens/player • home yard • center finish</small></div>
+          <button class="mode-card" data-game="classic">
+            <span class="mode-art">🏠🐼🏁</span>
+            <b>Classic Nutrition Ludo</b>
+            <small>4 tokens/player • capture • home lane</small>
           </button>
         </div>
 
-        <div class="play-choices">
-          <button class="play-btn primary" data-play="solo"><span>🤖</span><div><b>PLAY VS COMPUTER</b><small>Visible AI dice + token move</small></div><i>›</i></button>
-          <button class="play-btn" data-play="local"><span>👥</span><div><b>PLAY WITH FRIENDS</b><small>2–4 players • same device</small></div><i>›</i></button>
-          <button class="play-btn" data-play="online"><span>🌐</span><div><b>PLAY ONLINE</b><small>Firebase room • 2–4 players</small></div><i>›</i></button>
+        <div class="play-stack">
+          <button class="primary-action" data-play="solo"><span>🤖</span><div><b>PLAY VS COMPUTER</b><small>Visible AI turn & dice</small></div><i>›</i></button>
+          <button class="secondary-action" data-play="local"><span>👥</span><div><b>PLAY WITH FRIENDS</b><small>2–4 players • same device</small></div><i>›</i></button>
+          <button class="secondary-action" data-play="online"><span>🌐</span><div><b>PLAY ONLINE</b><small>Firebase room • 2–4 players</small></div><i>›</i></button>
         </div>
 
-        <div class="quick-actions">
-          <button id="howBtn">❓ How to Play</button>
-          <button id="achievementBtn">🏆 Achievements</button>
+        <div class="quick-row">
           <button id="challengeBtn">🎯 Daily Challenge</button>
+          <button id="achievementsBtn">🏆 Achievements</button>
+          <button id="howBtn">❓ How to Play</button>
         </div>
       </div>
     </section>
 
-    <section id="setupScreen" class="screen">
+    <!-- SETUP -->
+    <section id="screen-setup" class="screen">
       <div class="panel">
-        <div class="panel-head"><button class="back-btn" data-back>←</button><div><h2>Game Setup</h2><small id="chosenModeText">Snake Nutrition</small></div></div>
+        <div class="panel-head">
+          <button class="back-btn" data-home>←</button>
+          <div><h2>Game Setup</h2><small id="setupModeText">Snake Nutrition</small></div>
+        </div>
 
-        <div id="playerCountBlock" class="block">
+        <div id="playerCountWrap" class="form-block">
           <label>Players</label>
           <div class="segmented">
             <button data-count="2">2</button>
@@ -70,12 +87,12 @@
 
         <div id="playerEditor" class="player-editor"></div>
 
-        <div class="block">
+        <div class="form-block">
           <label>Level</label>
-          <div id="levelPicker" class="levels"></div>
+          <div id="levelPicker" class="level-grid"></div>
         </div>
 
-        <div class="block">
+        <div class="form-block">
           <label>Difficulty</label>
           <div class="segmented">
             <button data-diff="easy">Easy</button>
@@ -88,12 +105,17 @@
       </div>
     </section>
 
-    <section id="onlineScreen" class="screen">
+    <!-- ONLINE -->
+    <section id="screen-online" class="screen">
       <div class="panel">
-        <div class="panel-head"><button class="back-btn" data-back>←</button><div><h2>Online Multiplayer</h2><small id="firebaseStatus">Connecting…</small></div></div>
-        <label class="field">Your name<input id="onlineName" maxlength="18" placeholder="Your name"></label>
+        <div class="panel-head">
+          <button class="back-btn" data-home>←</button>
+          <div><h2>Online Multiplayer</h2><small id="firebaseStatus">Connecting…</small></div>
+        </div>
 
-        <div class="block">
+        <label class="field">Your name<input id="onlineName" maxlength="18" placeholder="Your name" /></label>
+
+        <div class="form-block">
           <label>Room capacity</label>
           <div class="segmented">
             <button data-online-count="2">2</button>
@@ -104,47 +126,61 @@
 
         <button id="createRoomBtn" class="cta">CREATE ROOM</button>
         <div class="or"><span></span><b>OR</b><span></span></div>
-        <div class="join-row"><input id="roomCodeInput" maxlength="6" inputmode="numeric" placeholder="6-digit room code"><button id="joinRoomBtn" class="secondary">JOIN</button></div>
+        <div class="join-row">
+          <input id="roomCodeInput" maxlength="6" inputmode="numeric" placeholder="6-digit room code" />
+          <button id="joinRoomBtn" class="secondary">JOIN</button>
+        </div>
         <p id="onlineError" class="error"></p>
       </div>
     </section>
 
-    <section id="lobbyScreen" class="screen">
+    <!-- LOBBY -->
+    <section id="screen-lobby" class="screen">
       <div class="panel">
         <div class="lobby-head">
           <div><small>ROOM CODE</small><strong id="roomCodeDisplay">------</strong></div>
           <button id="leaveRoomBtn" class="secondary small">LEAVE</button>
         </div>
+
         <div id="lobbyPlayers" class="lobby-grid"></div>
-        <div class="lobby-options">
+
+        <div class="lobby-settings">
           <label>Mode<select id="lobbyMode"><option value="snake">Snake Nutrition</option><option value="classic">Classic Nutrition Ludo</option></select></label>
           <label>Level<select id="lobbyLevel"></select></label>
           <label>Difficulty<select id="lobbyDifficulty"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
         </div>
-        <div class="lobby-actions"><button id="readyBtn" class="secondary">I'M READY</button><button id="startOnlineBtn" class="cta" disabled>START GAME</button></div>
+
+        <div class="lobby-actions">
+          <button id="readyBtn" class="secondary">I'M READY</button>
+          <button id="startOnlineBtn" class="cta" disabled>START GAME</button>
+        </div>
       </div>
     </section>
 
-    <section id="gameScreen" class="screen game-screen">
+    <!-- GAME -->
+    <section id="screen-game" class="screen game-screen">
       <div class="game-shell">
         <div id="playersBar" class="players-bar"></div>
 
         <div class="game-head">
-          <div><small id="modeBadge">SNAKE NUTRITION</small><h2 id="levelTitle">Food Explorer</h2></div>
-          <div class="turn-box"><span>🐼</span><div><small>TURN</small><b id="turnName">Player</b></div></div>
+          <div><small id="gameModeLabel">SNAKE NUTRITION</small><h2 id="gameLevelLabel">Food Explorer</h2></div>
+          <div class="turn-card"><span>🐼</span><div><small>TURN</small><b id="turnName">Player</b></div></div>
         </div>
 
-        <div class="three-wrap">
+        <div class="game-viewport">
           <canvas id="gameCanvas"></canvas>
-          <div id="rollBadge" class="roll-badge hidden"><small id="rollWho">YOU ROLLED</small><strong id="rollValue">6</strong></div>
-          <div id="eventPopup" class="event-popup hidden"><span id="eventIcon">🥦</span><div><b id="eventTitle">Healthy Boost</b><small id="eventText">+2 move</small></div></div>
+          <div id="rollPopup" class="roll-popup hidden"><small id="rollWho">YOU ROLLED</small><strong id="rollValue">6</strong></div>
+          <div id="eventPopup" class="event-popup hidden"><span id="eventEmoji">🥦</span><div><b id="eventTitle">Healthy Boost</b><small id="eventDesc">+2</small></div></div>
           <div id="selectHint" class="select-hint hidden">Tap a glowing Panda token</div>
         </div>
 
         <div class="control-dock">
-          <div class="instruction"><b id="instructionTitle">Roll the dice</b><small id="instructionSub">Tap ROLL to start your turn</small></div>
+          <div class="instruction">
+            <b id="instructionTitle">Roll the dice</b>
+            <small id="instructionSub">Tap ROLL to start your turn</small>
+          </div>
           <div class="dock-row">
-            <button id="rollBtn" class="roll-button">🎲 <span>ROLL</span></button>
+            <button id="rollBtn" class="roll-btn">🎲 <span>ROLL</span></button>
             <div class="last-roll"><small>LAST ROLL</small><strong id="lastRoll">—</strong></div>
           </div>
           <div id="powerups" class="power-row"></div>
@@ -152,21 +188,27 @@
       </div>
     </section>
 
-    <section id="resultScreen" class="screen">
-      <div class="result-card">
+    <!-- RESULT -->
+    <section id="screen-result" class="screen">
+      <div class="result-panel">
         <div class="crown">👑</div>
-        <div class="winner-orb">🐼</div>
-        <h2 id="resultTitle">Winner!</h2>
+        <div class="winner-panda">🐼</div>
+        <h2 id="winnerTitle">Winner!</h2>
+        <p id="winnerSub">Nutrition Mastery complete.</p>
         <div id="resultStats" class="result-grid"></div>
-        <div id="resultBadges" class="earned"></div>
-        <div class="result-actions"><button id="homeBtn" class="secondary">HOME</button><button id="againBtn" class="cta">PLAY AGAIN</button></div>
+        <div id="resultBadges" class="badge-row"></div>
+        <div class="result-actions">
+          <button id="homeBtn" class="secondary">HOME</button>
+          <button id="playAgainBtn" class="cta">PLAY AGAIN</button>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- QUIZ -->
   <div id="quizModal" class="modal hidden">
     <div class="quiz-card">
-      <div class="quiz-top"><span id="quizCategory" class="pill">Nutrition Quiz</span><span id="quizTimer" class="timer">20</span></div>
+      <div class="quiz-top"><span id="quizCategory" class="eyebrow">Nutrition Quiz</span><span id="quizTimer" class="timer">20</span></div>
       <h3 id="quizQuestion"></h3>
       <div id="quizOptions" class="quiz-options"></div>
       <div id="quizFeedback" class="quiz-feedback"></div>
@@ -174,8 +216,9 @@
     </div>
   </div>
 
+  <!-- INFO MODALS -->
   <div id="howModal" class="modal hidden"><div class="info-card"><button class="close" data-close="howModal">×</button><h2>How to Play</h2><div id="howContent"></div></div></div>
-  <div id="achievementModal" class="modal hidden"><div class="info-card"><button class="close" data-close="achievementModal">×</button><h2>Achievements</h2><div id="achievementList" class="achievement-list"></div></div></div>
+  <div id="achModal" class="modal hidden"><div class="info-card"><button class="close" data-close="achModal">×</button><h2>Achievements</h2><div id="achievementList" class="achievement-list"></div></div></div>
 
   <canvas id="confettiCanvas"></canvas>
   <div id="toast" class="toast hidden"></div>

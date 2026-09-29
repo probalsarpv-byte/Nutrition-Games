@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getAuth,signInAnonymously,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import { getDatabase,ref,set,get,update,remove,onValue,onDisconnect,runTransaction } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-
 const firebaseConfig={
   apiKey:"AIzaSyAOJL7Tb6iGJcTRO2ZhngJfeybB9N59I4c",
   authDomain:"shuddho-games.firebaseapp.com",
